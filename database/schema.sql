@@ -1,0 +1,28 @@
+-- schema.sql
+CREATE DATABASE IF NOT EXISTS fatecgamer;
+USE fatecgamer;
+
+-- Tabela para anúncios
+CREATE TABLE IF NOT EXISTS anuncios (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  jogo VARCHAR(255) NOT NULL,
+  tipo VARCHAR(255) NOT NULL,
+  descricao TEXT NOT NULL,
+  preco DECIMAL(10,2) NOT NULL,
+  contato VARCHAR(255) NOT NULL,
+  dataCriacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela para usuários
+CREATE TABLE IF NOT EXISTS users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE anuncios 
+ADD COLUMN imagem VARCHAR(255) NULL AFTER contato;
+
+ALTER TABLE anuncios ADD COLUMN user_id INT NOT NULL AFTER id;

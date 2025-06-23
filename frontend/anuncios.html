@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anúncios - FatecGamer RMT</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <header>
+    <h1>🎮 FatecGamer RMT</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="anunciar.html">Anunciar</a></li>
+        <li><a href="login.php">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Área de Filtros e Busca -->
+  <section class="filtro">
+    <label for="filtro-jogo">Filtrar por Jogo:</label>
+    <select id="filtro-jogo">
+      <option value="">Todos</option>
+      <option value="Tibia">Tibia</option>
+      <option value="World of Warcraft">World of Warcraft</option>
+      <option value="Albion Online">Albion Online</option>
+    </select>
+    <br>
+    <label for="search-keyword">Buscar:</label>
+    <input type="text" id="search-keyword" placeholder="Digite as palavras-chave">
+    <br>
+    <label for="order">Ordenar por:</label>
+    <select id="order">
+      <option value="">Data Recente</option>
+      <option value="priceAsc">Preço - Crescente</option>
+      <option value="priceDesc">Preço - Decrescente</option>
+    </select>
+    <br>
+    <button id="aplicar-filtro">Aplicar Filtro</button>
+  </section>
+  
+  <section class="anuncios">
+    <h2>Anúncios Publicados</h2>
+    <div id="lista-anuncios" class="grid">
+      <!-- Os cards dos anúncios serão inseridos aqui dinamicamente -->
+    </div>
+    <!-- Container para os controles de paginação -->
+    <div id="pagination" class="pagination"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 FatecGamer RMT - Intermediação com confiança</p>
+  </footer>
+
+  <script src="scripts/listarAnuncios.js"></script>
+</body>
+</html>
