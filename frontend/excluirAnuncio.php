@@ -5,7 +5,7 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
-require_once 'db.php';
+require_once __DIR__ . '/../db.php';
 
 if (!isset($_GET['id'])) {
     echo "Anúncio não especificado.";
@@ -36,4 +36,3 @@ $stmtDelete->execute([':id' => $id, ':user_id' => $user_id]);
 
 header("Location: dashboard.php");
 exit;
-?>

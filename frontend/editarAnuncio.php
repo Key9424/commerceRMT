@@ -5,7 +5,7 @@ if (!isset($_SESSION['user_id'])) {
    header("Location: login.php");
    exit;
 }
-require_once 'db.php';
+require_once __DIR__ . '/../db.php';
 
 $user_id = $_SESSION['user_id'];
 if (!isset($_GET['id'])) {
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          </ul>
       </nav>
    </header>
-   <section class="formulario">
+   <section class="formAnuncio">
       <h2>Editar Anúncio</h2>
       <form action="editarAnuncio.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
          <label for="jogo">Jogo:</label>
