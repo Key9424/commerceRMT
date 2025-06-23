@@ -12,7 +12,6 @@ include 'header.php';
 ?>
 <h1>Anunciar Produto - FatecGamer RMT</h1>
 <section class="formulario">
-   <h2>Publique seu Anúncio</h2>
    <!-- Formulário com enctype para permitir upload de arquivos -->
    <div class="formAnuncio">
       <form action="processaAnuncio.php" method="post" enctype="multipart/form-data">

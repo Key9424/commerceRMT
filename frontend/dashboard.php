@@ -54,16 +54,7 @@ $anuncios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <header>
-        <h1>Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="index.php">Início</a></li>
-                <li><a href="anunciar.php">Anunciar Novo</a></li>
-                <li><a href="logout.php">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php include 'header.php'; ?>
     <section>
         <h2>Meus Anúncios</h2>
         <?php if (count($anuncios) > 0): ?>
@@ -94,9 +85,7 @@ $anuncios = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p>Você ainda não possui anúncios publicados.</p>
         <?php endif; ?>
     </section>
-    <footer>
-        <p>&copy; 2025 FatecGamer RMT</p>
-    </footer>
+    <?php include 'footer.php'; ?>
 </body>
 
 </html>

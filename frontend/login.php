@@ -7,13 +7,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = trim($_POST["username"]);
   $password = $_POST["password"];
 
-  $stmt = $pdo->prepare("SELECT id, username, password FROM users WHERE username = :username");
+  $stmt = $pdo->prepare("SELECT id, username, password, is_admin FROM users WHERE username = :username");
   $stmt->execute(["username" => $username]);
   $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
   if ($user && password_verify($password, $user["password"])) {
     $_SESSION["user_id"] = $user["id"];
     $_SESSION["username"] = $user["username"];
+    $_SESSION["is_admin"] = !empty($user["is_admin"]) && $user["is_admin"] == 1;
     header("Location: dashboard.php");
     exit;
   } else {

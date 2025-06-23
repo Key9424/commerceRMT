@@ -3,7 +3,7 @@ require_once __DIR__ . '/../db.php';
 // Define o título da página para personalização do <title>
 $pageTitle = "FatecGamer RMT - Jogos";
 // Simulação de autenticação de admin. Em uma aplicação real, isso viria da sessão de usuário.
-$isAdmin = true;
+$isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
 include 'header.php';
 
 // Busca jogos do banco
@@ -33,6 +33,7 @@ $jogos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Scripts personalizados -->
 <script>
+    const isAdmin = <?php echo $isAdmin ? 'true' : 'false'; ?>;
     const games = <?php echo json_encode($jogos); ?>.map(j => ({
         title: j.titulo,
         desc: j.descricao,
@@ -44,6 +45,9 @@ $jogos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         grid.innerHTML = '';
         games.forEach((game, index) => {
             const imgTag = game.img ? `<img src="../public/uploads/${game.img}" class="card-img-top" alt="${game.title}">` : '';
+            const deleteBtn = isAdmin ?
+                `<button class="btn btn-danger btn-sm" onclick="deleteGame(${index})">Excluir</button>` :
+                '';
             const card = document.createElement('div');
             card.className = 'col-md-4 mb-3';
             card.innerHTML = `
@@ -52,7 +56,7 @@ $jogos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="card-body">
                         <h5 class="card-title">${game.title}</h5>
                         <p class="card-text">${game.desc}</p>
-                        <button class="btn btn-danger btn-sm" onclick="deleteGame(${index})">Excluir</button>
+                        ${deleteBtn}
                     </div>
                 </div>
             `;

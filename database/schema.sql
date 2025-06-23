@@ -32,3 +32,7 @@ CREATE TABLE jogos (
   titulo VARCHAR(255) NOT NULL,
   descricao TEXT NOT NULL
 );
+
+ALTER TABLE users ADD COLUMN is_admin TINYINT(1) DEFAULT 0;
+
+UPDATE users SET is_admin = 1 WHERE username = 'admin';
