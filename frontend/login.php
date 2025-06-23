@@ -1,34 +1,35 @@
 <?php
 // login.php
 session_start();
-require_once '../database/db.php';
+require_once __DIR__ . '/../db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = trim($_POST["username"]);
-    $password = $_POST["password"];
+  $username = trim($_POST["username"]);
+  $password = $_POST["password"];
 
-    $stmt = $pdo->prepare("SELECT id, username, password FROM users WHERE username = :username");
-    $stmt->execute(["username" => $username]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+  $stmt = $pdo->prepare("SELECT id, username, password FROM users WHERE username = :username");
+  $stmt->execute(["username" => $username]);
+  $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && password_verify($password, $user["password"])) {
-        $_SESSION["user_id"] = $user["id"];
-        $_SESSION["username"] = $user["username"];
-        header("Location: dashboard.php");
-        exit;
-    } else {
-        $error = "Credenciais inválidas.";
-    }
+  if ($user && password_verify($password, $user["password"])) {
+    $_SESSION["user_id"] = $user["id"];
+    $_SESSION["username"] = $user["username"];
+    header("Location: dashboard.php");
+    exit;
+  } else {
+    $error = "Credenciais inválidas.";
+  }
 }
 ?>
-<?php 
-  $pageTitle = "FatecGamer RMT - Login";
-  include 'header.php'; 
+<?php
+$pageTitle = "FatecGamer RMT - Login";
+include 'header.php';
 ?>
+
 <body>
-  <section class="formulario">
+  <section class="formAnuncio">
     <h2>Login</h2>
-    <?php if(isset($error)): ?>
+    <?php if (isset($error)): ?>
       <div class="msg-erro" role="alert"><?php echo $error; ?></div>
     <?php endif; ?>
     <form method="post" action="login.php" autocomplete="on">
@@ -48,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </p>
     </form>
   </section>
-<?php include 'footer.php'; ?>
+  <?php include 'footer.php'; ?>
   <script>
     function togglePassword() {
       const pwd = document.getElementById('password');
@@ -56,4 +57,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   </script>
 </body>
+
 </html>

@@ -1,7 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
-require_once 'db.php';
+require_once __DIR__ . '/../db.php';
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
@@ -26,4 +26,3 @@ try {
   http_response_code(500);
   echo json_encode(['message' => 'Erro ao buscar anúncio', 'error' => $e->getMessage()]);
 }
-?>

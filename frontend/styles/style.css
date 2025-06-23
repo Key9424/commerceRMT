@@ -58,9 +58,125 @@ nav a {
   border-radius: 4px;
 }
 
+.formAnuncio,
+.formAnuncio * {
+  box-sizing: border-box;
+}
+
+.formAnuncio {
+  border-radius: 12px;
+  padding: 1.5rem 1.2rem;
+  /* aumente o padding lateral */
+  max-width: 370px;
+  margin: 3rem auto 2rem auto;
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  box-shadow: 0 2px 12px #0003;
+  align-items: stretch;
+}
+
+.formAnuncio h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #00ffcc;
+}
+
+.formAnuncio form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  /* Menos espaço entre campos */
+}
+
+.formAnuncio label {
+  margin-bottom: 0.2rem;
+  font-weight: 500;
+}
+
+.formAnuncio input,
+.formAnuncio textarea,
+.formAnuncio select,
+.formAnuncio button {
+  width: 100%;
+  padding: 0.45rem;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background: #222;
+  color: #fcfcfc;
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+}
+
+.formAnuncio input::placeholder,
+.formAnuncio textarea::placeholder {
+  color: #ffffff;
+  /* Escolha a cor desejada */
+  opacity: 1;
+  /* Garante que a cor seja aplicada em todos os navegadores */
+}
+
+.formAnuncio button {
+  background: #00ffcc;
+  color: #181818;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.formAnuncio button:hover {
+  background: #00bfa3;
+}
+
+.formAnuncio input:focus,
+.formAnuncio textarea:focus {
+  background: #222;
+  color: #fcfcfc;
+  outline: 2px solid #00ffcc;
+  /* opcional: destaca o campo ativo */
+}
+
 footer {
   background-color: #111;
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
+}
+
+.jogos-carousel {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding: 1rem 0;
+}
+
+.jogos-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-jogos 20s linear infinite;
+  gap: 2rem;
+}
+
+.jogos-carousel .card {
+  min-width: 220px;
+  max-width: 220px;
+  margin: 0;
+  background: #222;
+  color: #fcfcfc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0002;
+}
+
+@keyframes scroll-jogos {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }

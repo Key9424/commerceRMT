@@ -2,18 +2,19 @@
 // anunciar.php
 session_start();
 if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php");
-    exit;
+   header("Location: login.php");
+   exit;
 }
 ?>
-<?php 
-  $pageTitle = "FatecGamer RMT - Anunciar Produto";
-  include 'header.php'; 
+<?php
+$pageTitle = "FatecGamer RMT - Anunciar Produto";
+include 'header.php';
 ?>
-      <h1>Anunciar Produto - FatecGamer RMT</h1>
-   <section class="formulario">
-      <h2>Publique seu Anúncio</h2>
-      <!-- Formulário com enctype para permitir upload de arquivos -->
+<h1>Anunciar Produto - FatecGamer RMT</h1>
+<section class="formulario">
+   <h2>Publique seu Anúncio</h2>
+   <!-- Formulário com enctype para permitir upload de arquivos -->
+   <div class="formAnuncio">
       <form action="processaAnuncio.php" method="post" enctype="multipart/form-data">
          <label for="jogo">Jogo:</label>
          <select id="jogo" name="jogo" required>
@@ -40,9 +41,9 @@ if (!isset($_SESSION["user_id"])) {
 
          <button type="submit">Publicar Anúncio</button>
       </form>
-   </section>
-   <footer>
-      <p>&copy; 2025 FatecGamer RMT</p>
-   </footer>
+   </div>
+</section>
+<?php include 'footer.php'; ?>
 </body>
+
 </html>

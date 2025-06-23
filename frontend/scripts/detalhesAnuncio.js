@@ -22,10 +22,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     let imagemHTML = '';
     if (anuncio.imagem) {
       // Assume que a imagem foi salva na pasta "uploads"
-      imagemHTML = `<img src="uploads/${anuncio.imagem}" alt="${anuncio.jogo}" />`;
+      imagemHTML = `<img src="../public/uploads/${anuncio.imagem}" alt="${anuncio.jogo}" />`;
     } else {
       // Imagem padrão
-      imagemHTML = `<img src="public/imagens/default.jpg" alt="${anuncio.jogo}" />`;
+      imagemHTML = `<img src="../public/imagens/default.jpg" alt="${anuncio.jogo}" />`;
     }
 
     // Cria uma URL configurada para o WhatsApp (confira o formato do número de telefone em 'contato')

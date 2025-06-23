@@ -2,15 +2,15 @@
 // editarAnuncio.php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
+   header("Location: login.php");
+   exit;
 }
 require_once 'db.php';
 
 $user_id = $_SESSION['user_id'];
 if (!isset($_GET['id'])) {
-    echo "Anúncio não especificado.";
-    exit;
+   echo "Anúncio não especificado.";
+   exit;
 }
 $id = intval($_GET['id']);
 
@@ -19,61 +19,63 @@ $stmt = $pdo->prepare("SELECT * FROM anuncios WHERE id = :id AND user_id = :user
 $stmt->execute([':id' => $id, ':user_id' => $user_id]);
 $anuncio = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$anuncio) {
-    echo "Anúncio não encontrado ou acesso não autorizado.";
-    exit;
+   echo "Anúncio não encontrado ou acesso não autorizado.";
+   exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $jogo = $_POST["jogo"];
-    $tipo = $_POST["tipo"];
-    $descricao = $_POST["descricao"];
-    $preco = $_POST["preco"];
-    $contato = $_POST["contato"];
+   $jogo = $_POST["jogo"];
+   $tipo = $_POST["tipo"];
+   $descricao = $_POST["descricao"];
+   $preco = $_POST["preco"];
+   $contato = $_POST["contato"];
 
-    // Mantém a imagem atual por padrão
-    $nomeImagem = $anuncio['imagem'];
-    // Verifica se uma nova imagem foi enviada
-    if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
-        $pastaUpload = 'uploads/';
-        if (!is_dir($pastaUpload)) {
-            mkdir($pastaUpload, 0777, true);
-        }
-        $nomeImagemNovo = uniqid() . '_' . basename($_FILES['imagem']['name']);
-        $caminhoCompleto = $pastaUpload . $nomeImagemNovo;
-        if (move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoCompleto)) {
-            $nomeImagem = $nomeImagemNovo;
-            // Opcional: remover a imagem antiga, se existir
-            if (!empty($anuncio['imagem']) && file_exists($pastaUpload . $anuncio['imagem'])) {
-                unlink($pastaUpload . $anuncio['imagem']);
-            }
-        }
-    }
-    
-    // Atualiza o anúncio no banco
-    $stmtUpdate = $pdo->prepare("UPDATE anuncios SET jogo = :jogo, tipo = :tipo, descricao = :descricao, preco = :preco, contato = :contato, imagem = :imagem WHERE id = :id AND user_id = :user_id");
-    $stmtUpdate->execute([
-        ':jogo'      => $jogo,
-        ':tipo'      => $tipo,
-        ':descricao' => $descricao,
-        ':preco'     => $preco,
-        ':contato'   => $contato,
-        ':imagem'    => $nomeImagem,
-        ':id'        => $id,
-        ':user_id'   => $user_id
-    ]);
-    
-    header("Location: dashboard.php");
-    exit;
+   // Mantém a imagem atual por padrão
+   $nomeImagem = $anuncio['imagem'];
+   // Verifica se uma nova imagem foi enviada
+   if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
+      $pastaUpload = '../public/uploads/';
+      if (!is_dir($pastaUpload)) {
+         mkdir($pastaUpload, 0777, true);
+      }
+      $nomeImagemNovo = uniqid() . '_' . basename($_FILES['imagem']['name']);
+      $caminhoCompleto = $pastaUpload . $nomeImagemNovo;
+      if (move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoCompleto)) {
+         $nomeImagem = $nomeImagemNovo;
+         // Opcional: remover a imagem antiga, se existir
+         if (!empty($anuncio['imagem']) && file_exists($pastaUpload . $anuncio['imagem'])) {
+            unlink($pastaUpload . $anuncio['imagem']);
+         }
+      }
+   }
+
+   // Atualiza o anúncio no banco
+   $stmtUpdate = $pdo->prepare("UPDATE anuncios SET jogo = :jogo, tipo = :tipo, descricao = :descricao, preco = :preco, contato = :contato, imagem = :imagem WHERE id = :id AND user_id = :user_id");
+   $stmtUpdate->execute([
+      ':jogo'      => $jogo,
+      ':tipo'      => $tipo,
+      ':descricao' => $descricao,
+      ':preco'     => $preco,
+      ':contato'   => $contato,
+      ':imagem'    => $nomeImagem,
+      ':id'        => $id,
+      ':user_id'   => $user_id
+   ]);
+
+   header("Location: dashboard.php");
+   exit;
 }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Editar Anúncio - FatecGamer RMT</title>
    <link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body>
    <header>
       <h1>Editar Anúncio</h1>
@@ -124,4 +126,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <p>&copy; 2025 FatecGamer RMT</p>
    </footer>
 </body>
+
 </html>

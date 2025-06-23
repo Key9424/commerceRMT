@@ -26,8 +26,8 @@ if (!$anuncio) {
 }
 
 // Se o anúncio possuir imagem, remove o arquivo
-if (!empty($anuncio['imagem']) && file_exists('uploads/' . $anuncio['imagem'])) {
-    unlink('uploads/' . $anuncio['imagem']);
+if (!empty($anuncio['imagem']) && file_exists('../public/uploads/' . $anuncio['imagem'])) {
+    unlink('../public/uploads/' . $anuncio['imagem']);
 }
 
 // Remove o anúncio do banco de dados
