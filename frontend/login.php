@@ -21,29 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - FatecGamer RMT</title>
-  <link rel="stylesheet" href="styles/style.css">
-  <style>
-    .msg-erro { color: #fff; background: #c0392b; padding: 0.7em 1em; border-radius: 4px; margin-bottom: 1em; }
-    .show-hide { cursor: pointer; color: #00ffcc; margin-left: 8px; }
-    .formulario input[type="text"], .formulario input[type="password"] { width: 100%; max-width: 350px; }
-  </style>
-</head>
+<?php 
+  $pageTitle = "FatecGamer RMT - Login";
+  include 'header.php'; 
+?>
 <body>
-  <header>
-    <h1>Login no FatecGamer RMT</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="register.php">Registrar</a></li>
-      </ul>
-    </nav>
-  </header>
   <section class="formulario">
     <h2>Login</h2>
     <?php if(isset($error)): ?>
@@ -66,9 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </p>
     </form>
   </section>
-  <footer>
-    <p>&copy; 2025 FatecGamer RMT</p>
-  </footer>
+<?php include 'footer.php'; ?>
   <script>
     function togglePassword() {
       const pwd = document.getElementById('password');

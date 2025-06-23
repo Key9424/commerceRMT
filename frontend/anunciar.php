@@ -6,24 +6,11 @@ if (!isset($_SESSION["user_id"])) {
     exit;
 }
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Anunciar Produto - FatecGamer RMT</title>
-   <link rel="stylesheet" href="styles/style.css">
-</head>
-<body>
-   <header>
+<?php 
+  $pageTitle = "FatecGamer RMT - Anunciar Produto";
+  include 'header.php'; 
+?>
       <h1>Anunciar Produto - FatecGamer RMT</h1>
-      <nav>
-         <ul>
-            <li><a href="index.html">Início</a></li>
-            <li><a href="dashboard.php">Dashboard</a></li>
-         </ul>
-      </nav>
-   </header>
    <section class="formulario">
       <h2>Publique seu Anúncio</h2>
       <!-- Formulário com enctype para permitir upload de arquivos -->
